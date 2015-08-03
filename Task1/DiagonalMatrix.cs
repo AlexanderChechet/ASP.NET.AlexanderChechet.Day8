@@ -18,11 +18,11 @@ namespace Task1
                 throw new ArgumentNullException();
             if (!IsValid(matrix))
                 throw new ArgumentException();
-            Width = matrix.GetLength(0);
-            Heigth = Width;
+            Size = matrix.GetLength(0);
+            Size = Size;
             SquareArray = new T[1][];
-            SquareArray[0] = new T[Heigth];
-            for (int i = 0; i < Heigth; i++)
+            SquareArray[0] = new T[Size];
+            for (int i = 0; i < Size; i++)
             {
                 SquareArray[0][i] = matrix[i, i];
             }
@@ -36,7 +36,7 @@ namespace Task1
         {
             get
             {
-                if (first > Heigth || first < 0 || second > Width || second < 0)
+                if (first > Size || first < 0 || second > Size || second < 0)
                     throw new ArgumentException();
                 if (first == second)
                     return SquareArray[0][first];
@@ -44,7 +44,7 @@ namespace Task1
             }
             set
             {
-                if (first != second || first > Heigth || first < 0 || second > Width || second < 0)
+                if (first != second || first > Size || first < 0 || second > Size || second < 0)
                     throw new ArgumentException();
                 SquareArray[0][first] = value;
                 OnMatrixChange(this, new MatrixChangeEventArgs(first, first));

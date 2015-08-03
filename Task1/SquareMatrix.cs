@@ -17,8 +17,8 @@ namespace Task1
             SquareArray = new T[side][];
             for (int i = 0; i < side; i++)
                 SquareArray[i] = new T[side];
-            Width = side;
-            Heigth = side;
+            Size = side;
+            Size = side;
         }
 
         public SquareMatrix(T[,] matrix)
@@ -27,13 +27,13 @@ namespace Task1
                 throw new ArgumentNullException();
             if (!IsValid(matrix))
                 throw new ArgumentException();
-            Width = matrix.GetLength(0);
-            Heigth = Width;
-            SquareArray = new T[Heigth][];
-            for (int i = 0; i < Heigth; i++)
+            Size = matrix.GetLength(0);
+            Size = Size;
+            SquareArray = new T[Size][];
+            for (int i = 0; i < Size; i++)
             {
-                SquareArray[i] = new T[Width];
-                for (int j = 0; j < Width; j++)
+                SquareArray[i] = new T[Size];
+                for (int j = 0; j < Size; j++)
                     SquareArray[i][j] = matrix[i, j];
             }
         }
@@ -50,20 +50,19 @@ namespace Task1
         public event EventHandler<MatrixChangeEventArgs> MatrixChange = delegate { };
         public void OnMatrixChange(object obj, MatrixChangeEventArgs args) { MatrixChange(obj, args); }
 
-        public int Width { get; protected set; }
-        public int Heigth { get; protected set; }
+        public int Size { get; protected set; }
 
         public virtual T this[int first, int second]
         {
             get
             {
-                if (first > Heigth || first < 0 || second > Width || second < 0)
+                if (first > Size || first < 0 || second > Size || second < 0)
                     throw new ArgumentException();
                 return SquareArray[first][second];
             }
             set
             {
-                if (first > Heigth || first < 0 || second > Width || second < 0)
+                if (first > Size || first < 0 || second > Size || second < 0)
                     throw new ArgumentException();
                 SquareArray[first][second] = value;
                 OnMatrixChange(this, new MatrixChangeEventArgs(first, second));

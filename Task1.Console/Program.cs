@@ -30,6 +30,8 @@
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                     matrix[i, j] = i*j;
+
+            var lol4 = lol3.Add(lol1);
             System.Console.ReadLine();
         }
 
